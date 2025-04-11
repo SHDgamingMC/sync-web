@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineSwift - Advertise</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <nav><h1>CineSwift</h1>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+<ul id="nav-links"  class="nav-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./movie.html">Movies</a></li>
+    <li><a href="./location.html">Locations</a></li>
+    <li><a href="./advertise.html">Advertise</a></li>
+    <li><a href="./help.html">Help</a></li>
+    <li class="sp-nav"><a href="./booking.html">BOOK NOW</a></li>
+   
+</ul></nav> 
+
+
+
+        <header class="ut">
+          <h1>CinemaChain Advertising</h1>
+          <p class="box">Reach thousands of moviegoers with our premium advertising opportunities.</p>
+      </header>
+      
+      <section class="advertising-options">
+          <h2>Our Advertising Solutions</h2><br>
+          <div class="option box">
+              <h3>On-Screen Ads</h3>
+              <p>Showcase your brand before movie screenings with high-impact video ads.</p>
+          </div>
+          <div class="option box">
+              <h3>Lobby Digital Displays</h3>
+              <p>Engage audiences in our cinema lobbies with digital screen promotions.</p>
+          </div>
+          <div class="option box">
+              <h3>Website & App Ads</h3>
+              <p>Advertise on our official website and mobile app for continuous exposure.</p>
+          </div>
+      </section>
+      
+      <section class="pricing">
+          <h2 class="box">Pricing & Packages</h2>
+          <p class="box">We offer flexible advertising packages to fit your needs. Contact us for detailed pricing.</p>
+      </section>
+      
+      <center><section class="contact">
+          <h2>Get in Touch</h2>
+          <p>Email: <a href="mailto:ads@cinemachain.com">ads@CineSwift.com</a></p>
+          <p>Phone: +123 456 7890</p>
+      </section></center>
+      
+      <center><form action="/submit_ad_request" method="post">
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+      
+        <label for="company">Company/Organization (Optional):</label>
+        <input type="text" id="company" name="company">
+      
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone">
+      
+        <label for="date">Desired Start Date:</label>
+        <input type="date" id="date" name="date" required>
+      
+        <label for="time">Desired Start Time(if applicable):</label>
+        <input type="time" id="time" name="time">
+      
+        <label for="advertising_type">Advertising Type:</label>
+        <select id="advertising_type" name="advertising_type" required>
+          <option value="">Select an option</option>
+          <option value="On Screen Ads">On Screen Ads</option>
+          <option value="Lobby Digital Displays">Lobby Digital Displays</option>
+          <option value="Website & App Ads">Website & App Ads</option>
+          <option value="Print Ads">Print Ads</option>
+          <option value="Event Sponsorship">Event Sponsorship</option>
+          <option value="Social Media Ads">Social Media Ads</option>
+          <option value="Other">Other</option>
+        </select>
+      
+        <label for="message">Message/Description:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+      
+        <label for="budget">Budget (Optional):</label>
+        <input type="text" id="budget" name="budget">
+      
+        <label for="target_audience">Target Audience (Optional):</label>
+        <input type="text" id="target_audience" name="target_audience">
+      
+        <label for="file_upload">Upload Advertising Material (Optional):</label>
+        <input type="file" id="file_upload" name="file_upload">
+      
+        <input type="submit" value="Submit Request">
+      
+      </form>
+      
+    </center>
+
+
+
+
+
+    <footer class="box">
+        <div class="wrapper">
+            <svg>
+                <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                    CINE SWIFT
+                </text>
+            </svg>
+        </div>
+        <div>
+          <nav>
+            <a href="./index.html">Home</a>
+            <a href="./movie.html">Movies</a>
+            <a href="./location.html">Locations</a>
+            <a href="./advertise.html">Advertise</a>
+            <a href="./help.html">Help</a>
+            <a href="./booking.html">BOOK NOW</a>
+          </nav>
+        </div>
+    
+        <div>
+
+          <span class="icon">📞0112 123 4567</span>
+          <span class="icon">📧 info@cineswift.com</span>
+        </div>
+      </footer>
+
+      <script src="./script.js"></script>
+</body>
+</html>

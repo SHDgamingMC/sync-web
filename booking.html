@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#131313, #08083d);
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<nav><h1>CineSwift</h1>
+    <div class="menu" onclick="toggleMenu()">☰</div>
+<ul id="nav-links"  class="nav-links">
+    <li><a href="./index.html">Home</a></li>
+    <li><a href="./movie.html">Movies</a></li>
+    <li><a href="./location.html">Locations</a></li>
+    <li><a href="./advertise.html">Advertise</a></li>
+    <li><a href="./help.html">Help</a></li>
+    <li class="sp-nav"><a href="./booking.html">BOOK NOW</a></li>
+   
+</ul></nav> 
+<div class="huj">
+    <h1>Welcome to Movie Ticket Booking</h1></div>
+    <!-- <button onclick="toggleMode()">Toggle Light/Dark Mode</button> -->
+    
+    <div class="container11">
+        <h2>Movie Ticket Booking</h2>
+        <div class="movie-selection">
+            <label for="movie">Select Movie:</label>
+            <select id="movie">
+                <option value="1200">CAPTAIN AMERICA: BRAVE NEW WORLD - LKR 1200</option>
+                <option value="1500">SNOW WHITE - LKR 1500</option>
+                <option value="1200">MOANA 2 - LKR 1200</option>
+                <option value="1200">MUFASA: THE LION KING - LKR 1200</option>
+                <option value="1100">A LOONEY TUNES MOVIE - LKR 1100</option>
+                <option value="1000">A MINECRAFT MOVIE - LKR 1000</option>
+            </select>
+            <br>
+            <label for="date">Date:</label>
+            <input type="date" id="date">
+            <br>
+            <label for="time">Time:</label>
+            <select id="time">
+                <option>10:00 AM</option>
+                <option>12:00 PM</option>
+                <option>4:00 PM</option>
+                <option>7:00 PM</option>
+            </select>
+            <br>
+            <button onclick="startSelection()">Proceed</button>
+        </div>
+        
+        <div class="seat-selection" style="display: none;">
+            <div class="screen">Screen</div>
+            <div class="seats" id="seats"></div>
+            <p>Total Price: LKR <span id="totalPrice">0</span></p>
+            <button onclick="bookTickets()">Book Tickets</button>
+        </div>
+
+        <div class="cart" style="display: none;">
+            <h3>Cart</h3><br>
+            <div id="cartItems"></div>
+        </div>
+    </div>
+
+    
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <script>
+        let selectedSeats = [];
+        let ticketPrice = 10;
+        let cart = [];
+        let bookedSeatsByShow = {}; // Stores booked seats for each movie+date+time combination
+
+
+
+        function startSelection() {
+            const movie = document.getElementById('movie').value;
+            const movieName = document.getElementById('movie').selectedOptions[0].text.split(' - ')[0];
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+
+            if (!date) {
+                alert('Please select a date.');
+                return;
+            }
+
+            ticketPrice = parseInt(movie);
+            document.querySelector('.movie-selection').style.display = 'none';
+            document.querySelector('.seat-selection').style.display = 'block';
+
+            generateSeats(movieName, date, time);
+        }
+
+        function generateSeats(movie, date, time) {
+            const seatsContainer = document.getElementById('seats');
+            seatsContainer.innerHTML = '';
+
+            const showKey = `${movie}-${date}-${time}`;
+            const bookedSeats = bookedSeatsByShow[showKey] || [];
+
+            for (let i = 0; i < 32; i++) {
+                const seat = document.createElement('div');
+                seat.classList.add('seat');
+                if (bookedSeats.includes(i)) {
+                    seat.classList.add('booked');
+                }
+                seat.addEventListener('click', () => toggleSeat(i, seat, showKey));
+                seatsContainer.appendChild(seat);
+            }
+        }
+
+        function toggleSeat(index, seatElement, showKey) {
+            if (bookedSeatsByShow[showKey]?.includes(index)) return;
+
+            if (selectedSeats.includes(index)) {
+                selectedSeats = selectedSeats.filter(seat => seat !== index);
+                seatElement.classList.remove('selected');
+            } else {
+                selectedSeats.push(index);
+                seatElement.classList.add('selected');
+            }
+
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            document.getElementById('totalPrice').innerText = selectedSeats.length * ticketPrice;
+        }
+
+        function bookTickets() {
+            if (selectedSeats.length === 0) {
+                alert('Please select at least one seat.');
+                return;
+            }
+
+            const movieName = document.getElementById('movie').selectedOptions[0].text.split(' - ')[0];
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const totalCost = selectedSeats.length * ticketPrice;
+            const showKey = `${movieName}-${date}-${time}`;
+
+            if (!bookedSeatsByShow[showKey]) {
+                bookedSeatsByShow[showKey] = [];
+            }
+
+            bookedSeatsByShow[showKey] = [...bookedSeatsByShow[showKey], ...selectedSeats];
+            cart.push({
+                movie: movieName,
+                seats: selectedSeats.length,
+                price: totalCost,
+                date: date,
+                time: time
+            });
+
+            selectedSeats = [];
+            generateSeats(movieName, date, time);
+            updateTotalPrice();
+            updateCart();
+
+            alert('Tickets booked successfully!');
+            document.querySelector('.movie-selection').style.display = 'block';
+            document.querySelector('.seat-selection').style.display = 'none';
+        }
+
+        function updateCart() {
+            const cartSection = document.querySelector('.cart');
+            const cartItemsContainer = document.getElementById('cartItems');
+
+            if (cart.length === 0) {
+                cartSection.style.display = 'none';
+                return;
+            }
+
+            cartSection.style.display = 'block';
+            cartItemsContainer.innerHTML = '';
+
+            cart.forEach((item, index) => {
+                cartItemsContainer.innerHTML += `
+                    <p><strong>${item.movie}</strong> - ${item.seats} seat(s) - LKR ${item.price}</p>
+                    <p>Date: ${item.date}, Time: ${item.time}</p>
+                    <button onclick="payNow(${index})">Pay Now</button>
+                    <hr>
+                `;
+            });
+        }
+
+        function payNow(index) {
+            alert(`Payment successful for ${cart[index].movie}`);
+            cart.splice(index, 1);
+            updateCart();
+        }
+    </script>
+
+    
+
+    <script src="./script.js"></script>
+</body>
+</html>

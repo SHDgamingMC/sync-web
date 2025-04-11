@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineSwift - Fast. Easy. Movie Magic!</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    
+        <nav><h1>CineSwift</h1>
+            <div class="menu" onclick="toggleMenu()">☰</div>
+        <ul id="nav-links"  class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./movie.html">Movies</a></li>
+            <li><a href="./location.html">Locations</a></li>
+            <li><a href="./advertise.html">Advertise</a></li>
+            <li><a href="./help.html">Help</a></li>
+            <li class="sp-nav"><a href="./booking.html">BOOK NOW</a></li>
+           
+        </ul></nav> 
+        
+        <div class="hero">
+        
+            <h1>CineSwift</h1>
+            <p>World largest cinema chain</p>
+            <a href="./movie.html"><button><div class="inner"> Explore Movies</div>     </button></a>
+        </div> 
+
+        <div class="slideshow-container box">
+            <div class="slide fade">
+                <img src="https://theatersollution.s3.amazonaws.com/91db31e1-a57e-4f00-8303-b10d7e7f5cb9.jpg" alt="Slide 1">
+                <a href="./booking.html"><button>book now</button></a>
+            </div>
+            <div class="slide fade">
+                <img src="https://theatersollution.s3.amazonaws.com/16c6c3b0-39d1-4442-9196-eaa95d5f8e71.jpg" alt="Slide 2">
+                <a href="./booking.html"><button>book now</button></a>
+            </div>
+            <div class="slide fade">
+                <img src="https://theatersollution.s3.amazonaws.com/a1db6887-8f7d-4e19-ae51-3f89172138cd.jpg" alt="Slide 3">
+                <a href="./booking.html"><button>book now</button></a>
+            </div>
+    
+            <!-- Left and Right Buttons -->
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
+
+
+        <br><br><br><br><br><br><br><br><br><br><br>
+        
+        <footer class="box">
+            <div class="wrapper">
+                <svg>
+                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                        CINE SWIFT
+                    </text>
+                </svg>
+            </div>
+            <div>
+              <nav>
+                <a href="./index.html">Home</a>
+                <a href="./movie.html">Movies</a>
+                <a href="./location.html">Locations</a>
+                <a href="./advertise.html">Advertise</a>
+                <a href="./help.html">Help</a>
+                <a href="./booking.html">BOOK NOW</a>
+              </nav>
+            </div>
+        
+            <div>
+
+              <span class="icon">📞0112 123 4567</span>
+              <span class="icon">📧 info@cineswift.com</span>
+            </div>
+          </footer>
+        
+<br><br>
+
+
+
+    
+    <script src="./script.js"></script>
+</body>
+</html>
